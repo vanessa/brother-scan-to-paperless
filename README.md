@@ -2,7 +2,7 @@
 
 A lightweight daemon that turns your Brother scanner's Scan button into a one-press pipeline to [Paperless-ngx](https://docs.paperless-ngx.com/).
 
-Press Scan on your Brother printer → document lands in Paperless, OCR'd and indexed.
+Press Scan on your Brother printer → document lands in Paperless.
 
 > Important: This is a personal project that works on my specific setup. It's not a polished, general-purpose tool. You're welcome to use it, open a PR, fork it, or learn from it, but expect to read the code and adapt things to your environment. No guarantees it'll work out of the box for you.
 
@@ -44,7 +44,14 @@ The installer will:
 
 ## Setup
 
-### 1. Install the Brother scanner driver
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/vanessa/brother-scan-to-paperless.git ~/brother-scan-to-paperless
+cd ~/brother-scan-to-paperless
+```
+
+### 2. Install the Brother scanner driver
 
 Download the **Scanner driver 64bit (deb package)** for your model from [Brother's support site](https://support.brother.com):
 
@@ -60,7 +67,7 @@ sudo mkdir -p /etc/sane.d
 echo "brother4" | sudo tee /etc/sane.d/dll.conf
 ```
 
-### 2. Register your scanner
+### 3. Register your scanner
 
 ```bash
 sudo brsaneconfig4 -a name=BROTHER model=DCP-L2540DW ip=YOUR_PRINTER_IP
@@ -72,7 +79,7 @@ Replace `DCP-L2540DW` with your model and `YOUR_PRINTER_IP` with the printer's I
 brsaneconfig4 -q | grep BROTHER
 ```
 
-### 3. Run the setup wizard
+### 4. Run the setup wizard
 
 ```bash
 sudo brother-scan-to-paperless setup
@@ -86,7 +93,7 @@ This will ask for:
 - **Resolution**  - scan DPI (default: 300, good for OCR)
 - **Display name**  - what appears on the printer's LCD when selecting a scan destination
 
-### 4. Test
+### 5. Test
 
 ```bash
 sudo brother-scan-to-paperless test
@@ -94,7 +101,7 @@ sudo brother-scan-to-paperless test
 
 This runs a single scan without the daemon. Place a document on the flatbed first.
 
-### 5. Start the daemon
+### 6. Start the daemon
 
 ```bash
 sudo systemctl enable --now brother-scan-to-paperless
