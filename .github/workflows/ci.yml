@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check syntax
+        run: python -m py_compile src/brother_scan_daemon.py
+
+      - name: Check install script syntax
+        run: bash -n install.sh
+
+      - name: Check uninstall script syntax
+        run: bash -n uninstall.sh
