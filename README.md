@@ -27,6 +27,10 @@ It's been tested on Proxmox LXC containers running Debian, but should work anywh
 - **sane-utils** (provides `scanimage`)
 - **snmp** (provides `snmpset` for printer registration)
 
+## Important
+
+This daemon must run on the **same machine** as Paperless-ngx - it saves scans directly to the local consume folder. Running the daemon on a separate machine from Paperless is not currently supported. PRs to add support for remote/networked consume directories are welcome.
+
 ## Installation
 
 ```bash
