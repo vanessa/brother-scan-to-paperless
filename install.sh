@@ -66,7 +66,7 @@ fi
 # Install the daemon
 info "Installing daemon to ${INSTALL_DIR}..."
 mkdir -p "$INSTALL_DIR"
-cp brother_scan_daemon.py "$INSTALL_DIR/brother_scan_daemon.py"
+cp src/brother_scan_daemon.py "$INSTALL_DIR/brother_scan_daemon.py"
 chmod +x "$INSTALL_DIR/brother_scan_daemon.py"
 
 # Create symlink
